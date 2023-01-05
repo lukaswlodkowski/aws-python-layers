@@ -1,0 +1,17 @@
+service: common-python-libraries
+
+provider:
+  name: aws
+  runtime: python3.9
+  region: ${opt:region}
+  stackName: ${self:service}
+  deploymentBucket:
+    name: common-libraries-deploys
+
+layers:
+  python-requests-layer:
+    path: layers/requests
+    description: Contains requests libraries for Python 3.9.
+    retain: false
+    compatibleRuntimes:
+      - python3.9
